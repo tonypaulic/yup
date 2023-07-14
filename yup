@@ -1,0 +1,37 @@
+#!/bin/bash
+# requires: pacman-contrib yay(AUR)
+# requires complementary yup2 file
+
+# location of scripts
+LOCATION="$(dirname $0)"
+
+# get updates informtation
+LU=$(checkupdates && yay -Qua)
+LIST_UPDATES=$(echo $LU | sed 's/ /\n/4;P;D')
+NUM_UPDATES=$(echo $LU | sed 's/ /\n/4;P;D' | sed '/^$/d' | wc -l)
+SUMMARY=$(yay -Ps | grep -A3 "Total installed" | sed -e 's/==> //g')
+
+if [ $NUM_UPDATES -gt 0 ]; then
+	ICON="updates-available"
+	notify-send -i mintupdate-updates-available Updates "Updates are available"
+else
+	ICON="mintupdate-up-to-date"
+fi
+
+# do the genmon
+echo "<icon>$ICON</icon>"
+echo -e "<iconclick>xfce4-terminal -T 'Sysytem Update' --color-bg '#032665' --color-text orange --icon update -e $LOCATION/yup2</iconclick>"
+if [[ $NUM_UPDATES -gt 0 ]]; then
+	echo "<tool><b>---=== Updates available ===---</b>"
+	echo " "
+	echo "$LIST_UPDATES"
+else
+	echo "<tool><b>---=== System is up to date ===---</b>"
+	echo " "
+	echo "$SUMMARY"
+fi
+echo " "
+echo "<small><i>Last checked: $(date)</i></small></tool>"
+	
+exit 0
+
