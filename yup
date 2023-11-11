@@ -1,5 +1,6 @@
 #!/bin/bash
-# requires: pacman-contrib yay(AUR)
+# genmon update notifier and processor
+# requires: xfce4-genmon-plugin pacman-contrib yay(AUR)
 
 ##############################################################
 # CONFIGURABLE ITEMS
