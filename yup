@@ -6,7 +6,7 @@
 # CONFIGURABLE ITEMS
 #
 # panel icon to use when updates are available
-ICON_UPDATES_AVAILABLE="updates-available"
+ICON_UPDATES_AVAILABLE="mintupdate-updates-available"
 #
 # panel icon to use when system is up to date
 #
