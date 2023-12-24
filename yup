@@ -36,6 +36,7 @@ LU=$(checkupdates && yay -Qua)
 LIST_UPDATES=$(echo $LU | sed 's/ /\n/4;P;D')
 NUM_UPDATES=$(echo $LU | sed 's/ /\n/4;P;D' | sed '/^$/d' | wc -l)
 SUMMARY=$(yay -Ps | grep -A3 "Total installed" | sed -e 's/==> //g')
+PINS=$(sed -n "/ installed $1/{s/].*/]/p;q}" /var/log/pacman.log | tr -d '[]' | sed 's/T/ /' | sed 's/+.*//')
 
 if [ $NUM_UPDATES -gt 0 ]; then
 	ICON=$ICON_UPDATES_AVAILABLE
@@ -54,6 +55,8 @@ if [[ $NUM_UPDATES -gt 0 ]]; then
 else
 	echo "<tool><b>---=== System is up to date ===---</b>"
 	echo " "
+    echo "Install date: $PINS"
+    echo " "
 	echo "$SUMMARY"
 fi
 echo " "
