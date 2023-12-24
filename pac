@@ -22,7 +22,7 @@ YUP2="/tmp/yup2"
 # create secondary execution file to run yay and refresh plugin
 cat << EOF > $YUP2
 #!/bin/bash
-pacman -Syu
+sudo pacman -Syu
 echo 
 echo \"===== Done - Press enter to exit =====\"
 read
