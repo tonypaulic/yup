@@ -36,7 +36,7 @@ LU=$(checkupdates)
 LIST_UPDATES=$(echo $LU | sed 's/ /\n/4;P;D')
 NUM_UPDATES=$(echo $LU | sed 's/ /\n/4;P;D' | sed '/^$/d' | wc -l)
 
-# get infor for summary text in tooltip
+# get info for summary text in tooltip
 PINS=$(sed -n "/ installed $1/{s/].*/]/p;q}" /var/log/pacman.log | tr -d '[]' | sed 's/T/ /' | sed 's/+.*//')
 PTOT=$(pacman -Q | wc -l)
 PFOR=$(pacman -Qm | wc -l)
