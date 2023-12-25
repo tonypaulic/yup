@@ -49,7 +49,7 @@ SUMMARY="Install date: $PINS
 
 Total installed packages: $PTOT
 Foreign installed packages: $PFOR
-Explicitely installed packages: $PEXP
+Explicitly installed packages: $PEXP
 Orphaned packages: $PORP
 
 Total size of installed packages: $PSIZ"
