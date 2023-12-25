@@ -39,8 +39,8 @@ NUM_UPDATES=$(echo $LU | sed 's/ /\n/4;P;D' | sed '/^$/d' | wc -l)
 # get info for summary text in tooltip
 PINS=$(sed -n "/ installed $1/{s/].*/]/p;q}" /var/log/pacman.log | tr -d '[]' | sed 's/T/ /' | sed 's/+.*//')
 PTOT=$(pacman -Q | wc -l)
-PFOR=$(pacman -Qm | wc -l)
 PEXP=$(pacman -Qe | wc -l)
+PFOR=$(pacman -Qm | wc -l)
 PORP=$(pacman -Qdtq | wc -l)
 PSIZ=$(expac "%n %m" | sort -gk2 | awk '{sum+=$2} END {printf "%.2f GiB\n", sum/2^30}')
 
@@ -48,8 +48,8 @@ PSIZ=$(expac "%n %m" | sort -gk2 | awk '{sum+=$2} END {printf "%.2f GiB\n", sum/
 SUMMARY="Install date: $PINS
 
 Total installed packages: $PTOT
-Foreign installed packages: $PFOR
 Explicitly installed packages: $PEXP
+Foreign installed packages: $PFOR
 Orphaned packages: $PORP
 
 Total size of installed packages: $PSIZ"
