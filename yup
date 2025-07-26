@@ -35,7 +35,7 @@ chmod +x $YUP2
 LU=$(checkupdates && yay -Qua)
 LIST_UPDATES=$(echo $LU | sed 's/ /\n/4;P;D' | sed -e 's/^/  /g')
 NUM_UPDATES=$(echo $LU | sed 's/ /\n/4;P;D' | sed '/^$/d' | wc -l)
-SUMMARY=$(yay -Ps | grep -A5 "Total installed" | sed -e 's/==> /  /g' | column -s ':' -t)
+SUMMARY=$(yay -Ps | grep -A5 "Total installed" | sed 's#/var.*pkg/##' | sed 's#/home/toz/.cache/yay##g' | sed -e 's/==> /  /g' | column -s ':' -t)
 PINS=$(sed -n "/ installed $1/{s/].*/]/p;q}" /var/log/pacman.log | tr -d '[]' | sed 's/T/ /' | sed 's/+.*//')
 
 if [ $NUM_UPDATES -gt 0 ]; then
@@ -57,7 +57,7 @@ else
 	echo " "
     echo "Install date: $PINS"
     echo " "
-	echo "<tt>$SUMMARY</tt>"
+	echo "<tt><small>$SUMMARY</small></tt>"
 fi
 echo " "
 echo "<small><i>Last checked: $(date)</i></small></tool>"
